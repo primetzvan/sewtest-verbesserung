@@ -1,0 +1,26 @@
+<table mat-table matSort aria-label="Elements">
+<ng-container matColumnDef="id">
+  <th mat-header-cell *matHeaderCellDef> Id </th>
+  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+</ng-container>
+
+<ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef> Name </th>
+  <td mat-cell *matCellDef="let element"> {{element.shortName}} </td>
+</ng-container>
+
+<ng-container matColumnDef="category">
+  <th mat-header-cell *matHeaderCellDef> Category </th>
+  <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+</ng-container>
+
+<ng-container matColumnDef="inventoryid">
+  <th mat-header-cell *matHeaderCellDef> Inventory Id </th>
+  <td mat-cell *matCellDef="let element"> {{element.inventoryNo}} </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="display"></tr>
+<tr mat-row *matRowDef="let row; columns: display;"
+[routerLink]="['/detail/' + row.id ]"
+></tr>
+</table>

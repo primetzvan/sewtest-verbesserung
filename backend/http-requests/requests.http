@@ -1,0 +1,502 @@
+# Ausgabe aller Geräte, die nicht zu einem Set oder einem anderen Gerät gehören
+
+GET http://localhost:8080/api/device
+
+###
+#HTTP/1.1 200 OK
+#Content-Type: application/json
+#content-length: 563
+#
+#[
+#  {
+#    "id": 1000,
+#    "brand": "IIYAMA",
+#    "type": "xy-123",
+#    "shortName": "86\" Monitor",
+#    "description": "",
+#    "inventoryNo": null,
+#    "belongsTo": null,
+#    "category": {
+#      "abbr": "MONITOR",
+#      "name": "Monitor, TV, ..."
+#    }
+#  },
+#  {
+#    "id": 1001,
+#    "brand": "Canon",
+#    "type": "70D",
+#    "shortName": "Fotoapparat-Set",
+#    "description": null,
+#    "inventoryNo": null,
+#    "belongsTo": null,
+#    "category": {
+#      "abbr": "FOTO",
+#      "name": "Fotoapparate und Zubehör"
+#    }
+#  },
+#  {
+#    "id": 1005,
+#    "brand": "Google",
+#    "type": "Chromecast 3",
+#    "shortName": "Chromecast 3",
+#    "description": null,
+#    "inventoryNo": null,
+#    "belongsTo": null,
+#    "category": {
+#      "abbr": "CHROMECAST",
+#      "name": "Cromecast-Geräte"
+#    }
+#  }
+#]
+
+###
+
+# Hierarchische Ausgabe aller Geräte (rekursiv)
+
+GET http://localhost:8080/api/device/tree
+
+###
+#[
+#  {
+#    "device": {
+#      "id": 1000,
+#      "brand": "IIYAMA",
+#      "type": "xy-123",
+#      "shortName": "86\" Monitor",
+#      "description": "",
+#      "inventoryNo": null,
+#      "belongsTo": null,
+#      "category": {
+#        "abbr": "MONITOR",
+#        "name": "Monitor, TV, ..."
+#      }
+#    },
+#    "components": []
+#  },
+#  {
+#    "device": {
+#      "id": 1001,
+#      "brand": "Canon",
+#      "type": "70D",
+#      "shortName": "Fotoapparat-Set",
+#      "description": null,
+#      "inventoryNo": null,
+#      "belongsTo": null,
+#      "category": {
+#        "abbr": "FOTO",
+#        "name": "Fotoapparate und Zubehör"
+#      }
+#    },
+#    "components": [
+#      {
+#        "device": {
+#          "id": 1003,
+#          "brand": "n/a",
+#          "type": "n/a",
+#          "shortName": "Fototasche",
+#          "description": null,
+#          "inventoryNo": null,
+#          "belongsTo": {
+#            "id": 1001,
+#            "brand": "Canon",
+#            "type": "70D",
+#            "shortName": "Fotoapparat-Set",
+#            "description": null,
+#            "inventoryNo": null,
+#            "belongsTo": null,
+#            "category": {
+#              "abbr": "FOTO",
+#              "name": "Fotoapparate und Zubehör"
+#            }
+#          },
+#          "category": null
+#        },
+#        "components": []
+#      },
+#      {
+#        "device": {
+#          "id": 1002,
+#          "brand": "n/a",
+#          "type": "n/a",
+#          "shortName": "Stativ",
+#          "description": null,
+#          "inventoryNo": null,
+#          "belongsTo": {
+#            "id": 1001,
+#            "brand": "Canon",
+#            "type": "70D",
+#            "shortName": "Fotoapparat-Set",
+#            "description": null,
+#            "inventoryNo": null,
+#            "belongsTo": null,
+#            "category": {
+#              "abbr": "FOTO",
+#              "name": "Fotoapparate und Zubehör"
+#            }
+#          },
+#          "category": null
+#        },
+#        "components": []
+#      },
+#      {
+#        "device": {
+#          "id": 1004,
+#          "brand": "Canon",
+#          "type": "70D",
+#          "shortName": "Fotoapparat",
+#          "description": null,
+#          "inventoryNo": null,
+#          "belongsTo": {
+#            "id": 1001,
+#            "brand": "Canon",
+#            "type": "70D",
+#            "shortName": "Fotoapparat-Set",
+#            "description": null,
+#            "inventoryNo": null,
+#            "belongsTo": null,
+#            "category": {
+#              "abbr": "FOTO",
+#              "name": "Fotoapparate und Zubehör"
+#            }
+#          },
+#          "category": null
+#        },
+#        "components": []
+#      }
+#    ]
+#  },
+#  {
+#    "device": {
+#      "id": 1005,
+#      "brand": "Google",
+#      "type": "Chromecast 3",
+#      "shortName": "Chromecast 3",
+#      "description": null,
+#      "inventoryNo": null,
+#      "belongsTo": null,
+#      "category": {
+#        "abbr": "CHROMECAST",
+#        "name": "Cromecast-Geräte"
+#      }
+#    },
+#    "components": []
+#  },
+#  {
+#    "device": {
+#      "id": 1006,
+#      "brand": null,
+#      "type": "A",
+#      "shortName": null,
+#      "description": null,
+#      "inventoryNo": null,
+#      "belongsTo": null,
+#      "category": {
+#        "abbr": "CHROMECAST",
+#        "name": "Cromecast-Geräte"
+#      }
+#    },
+#    "components": [
+#      {
+#        "device": {
+#          "id": 1007,
+#          "brand": null,
+#          "type": "A.B",
+#          "shortName": null,
+#          "description": null,
+#          "inventoryNo": null,
+#          "belongsTo": {
+#            "id": 1006,
+#            "brand": null,
+#            "type": "A",
+#            "shortName": null,
+#            "description": null,
+#            "inventoryNo": null,
+#            "belongsTo": null,
+#            "category": {
+#              "abbr": "CHROMECAST",
+#              "name": "Cromecast-Geräte"
+#            }
+#          },
+#          "category": null
+#        },
+#        "components": []
+#      },
+#      {
+#        "device": {
+#          "id": 1008,
+#          "brand": null,
+#          "type": "A.C",
+#          "shortName": null,
+#          "description": null,
+#          "inventoryNo": null,
+#          "belongsTo": {
+#            "id": 1006,
+#            "brand": null,
+#            "type": "A",
+#            "shortName": null,
+#            "description": null,
+#            "inventoryNo": null,
+#            "belongsTo": null,
+#            "category": {
+#              "abbr": "CHROMECAST",
+#              "name": "Cromecast-Geräte"
+#            }
+#          },
+#          "category": null
+#        },
+#        "components": [
+#          {
+#            "device": {
+#              "id": 1009,
+#              "brand": null,
+#              "type": "A.C.D",
+#              "shortName": null,
+#              "description": null,
+#              "inventoryNo": null,
+#              "belongsTo": {
+#                "id": 1008,
+#                "brand": null,
+#                "type": "A.C",
+#                "shortName": null,
+#                "description": null,
+#                "inventoryNo": null,
+#                "belongsTo": {
+#                  "id": 1006,
+#                  "brand": null,
+#                  "type": "A",
+#                  "shortName": null,
+#                  "description": null,
+#                  "inventoryNo": null,
+#                  "belongsTo": null,
+#                  "category": {
+#                    "abbr": "CHROMECAST",
+#                    "name": "Cromecast-Geräte"
+#                  }
+#                },
+#                "category": null
+#              },
+#              "category": null
+#            },
+#            "components": [
+#              {
+#                "device": {
+#                  "id": 1010,
+#                  "brand": null,
+#                  "type": "A.C.D.E",
+#                  "shortName": null,
+#                  "description": null,
+#                  "inventoryNo": null,
+#                  "belongsTo": {
+#                    "id": 1009,
+#                    "brand": null,
+#                    "type": "A.C.D",
+#                    "shortName": null,
+#                    "description": null,
+#                    "inventoryNo": null,
+#                    "belongsTo": {
+#                      "id": 1008,
+#                      "brand": null,
+#                      "type": "A.C",
+#                      "shortName": null,
+#                      "description": null,
+#                      "inventoryNo": null,
+#                      "belongsTo": {
+#                        "id": 1006,
+#                        "brand": null,
+#                        "type": "A",
+#                        "shortName": null,
+#                        "description": null,
+#                        "inventoryNo": null,
+#                        "belongsTo": null,
+#                        "category": {
+#                          "abbr": "CHROMECAST",
+#                          "name": "Cromecast-Geräte"
+#                        }
+#                      },
+#                      "category": null
+#                    },
+#                    "category": null
+#                  },
+#                  "category": null
+#                },
+#                "components": [
+#                  {
+#                    "device": {
+#                      "id": 1011,
+#                      "brand": null,
+#                      "type": "A.C.D.E.F",
+#                      "shortName": null,
+#                      "description": null,
+#                      "inventoryNo": null,
+#                      "belongsTo": {
+#                        "id": 1010,
+#                        "brand": null,
+#                        "type": "A.C.D.E",
+#                        "shortName": null,
+#                        "description": null,
+#                        "inventoryNo": null,
+#                        "belongsTo": {
+#                          "id": 1009,
+#                          "brand": null,
+#                          "type": "A.C.D",
+#                          "shortName": null,
+#                          "description": null,
+#                          "inventoryNo": null,
+#                          "belongsTo": {
+#                            "id": 1008,
+#                            "brand": null,
+#                            "type": "A.C",
+#                            "shortName": null,
+#                            "description": null,
+#                            "inventoryNo": null,
+#                            "belongsTo": {
+#                              "id": 1006,
+#                              "brand": null,
+#                              "type": "A",
+#                              "shortName": null,
+#                              "description": null,
+#                              "inventoryNo": null,
+#                              "belongsTo": null,
+#                              "category": {
+#                                "abbr": "CHROMECAST",
+#                                "name": "Cromecast-Geräte"
+#                              }
+#                            },
+#                            "category": null
+#                          },
+#                          "category": null
+#                        },
+#                        "category": null
+#                      },
+#                      "category": null
+#                    },
+#                    "components": []
+#                  }
+#                ]
+#              }
+#            ]
+#          }
+#        ]
+#      }
+#    ]
+#  }
+#]
+
+### Insert von Device und bestehender Kategorie
+
+POST http://localhost:8080/api/device
+Content-Type: application/json
+
+{
+  "brand": "Panasonic",
+  "type": "p-1234",
+  "shortName": "Beamer Panasonic",
+  "category": {
+    "abbr": "MONITOR"
+  }
+}
+
+###
+#HTTP/1.1 201 Created
+#Location: http://localhost:8080/api/device/1012
+#content-length: 0
+#
+#<Response body is empty>
+
+###
+
+GET http://localhost:8080/api/device/1011
+
+###
+#HTTP/1.1 200 OK
+#Content-Type: application/json
+#content-length: 189
+#
+#{
+#  "id": 1012,
+#  "brand": "Panasonic",
+#  "type": "p-1234",
+#  "shortName": "Beamer Panasonic",
+#  "description": null,
+#  "inventoryNo": null,
+#  "belongsTo": null,
+#  "category": {
+#    "abbr": "MONITOR",
+#    "name": "Monitor, TV, ..."
+#  }
+#}
+
+
+
+
+
+### Insert von Device und neuer Kategorie
+
+POST http://localhost:8080/api/device
+Content-Type: application/json
+
+{
+  "brand": "Sony",
+  "type": "s-1234",
+  "shortName": "Beamer Sony",
+  "category": {
+    "abbr": "BEAMER",
+    "name": "Beamer usw."
+  }
+}
+
+###
+#HTTP/1.1 201 Created
+#Location: http://localhost:8080/api/device/1013
+#content-length: 0
+#
+#<Response body is empty>
+
+
+### Insert new Category
+
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "abbr": "BEAMER3",
+  "name": "Beamerei usw."
+}
+
+###
+#HTTP/1.1 201 Created
+#Location: http://localhost:8080/api/category/BEAMER3
+#content-length: 0
+#
+#<Response body is empty>
+
+### update Category
+
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "abbr": "BEAMER3",
+  "name": "neue Beschreibung für Beamer3"
+}
+
+###
+#HTTP/1.1 201 Created
+#Location: http://localhost:8080/api/category/BEAMER3
+#content-length: 0
+#
+#<Response body is empty>
+
+### find category by id
+
+GET http://localhost:8080/api/category/BEAMER3
+
+###
+#HTTP/1.1 200 OK
+#Content-Type: application/json
+#content-length: 58
+#
+#{
+#  "abbr": "BEAMER3",
+#  "name": "neue Beschreibung für Beamer3"
+#}
