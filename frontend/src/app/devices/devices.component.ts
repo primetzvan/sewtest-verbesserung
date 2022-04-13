@@ -35,4 +35,5 @@ export class DevicesComponent implements OnInit {
         this.table.dataSource = this.datasource;
       });
   }
+
 }
