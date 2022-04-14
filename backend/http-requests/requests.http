@@ -500,3 +500,5 @@ GET http://localhost:8080/api/category/BEAMER3
 #  "abbr": "BEAMER3",
 #  "name": "neue Beschreibung für Beamer3"
 #}
+
+GET http://localhost:8080/api/device/components/1001

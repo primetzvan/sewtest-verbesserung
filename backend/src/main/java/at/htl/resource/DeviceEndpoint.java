@@ -44,7 +44,7 @@ public class DeviceEndpoint {
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllSorted(@PathParam("id") long id) {
-    return Response.ok(dvr.find("id = ?1", id).firstResult().toString()).build();
+    return Response.ok(dvr.find("id = ?1", id).firstResult()).build();
     //return dvr.find("id = ?1", id).firstResult();
   }
 
@@ -92,5 +92,13 @@ public class DeviceEndpoint {
     return Response.created(uri).build();
   }
 
+
+  @GET
+  @Path("/components/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getAllComponents(@PathParam("id") long id) {
+    System.out.println(dvr.find("belongsTo.id = ?1", id).list());
+    return Response.ok(dvr.find("belongsTo.id = ?1", id).list()).build();
+  }
 
 }

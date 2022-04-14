@@ -1,1 +1,24 @@
-<p>device-detail works!</p>
+<ul>
+  <li>Id: {{act.id}}</li>
+  <li>InventoryId: {{act.inventoryNo || null}}</li>
+  <li>Name: {{act.shortName}}</li>
+  <li>Type: {{act.type || null}}</li>
+  <li>Brand: {{act.brand || null}}</li>
+  <li>Category: {{act.category.name || null}}</li>
+  <li>Desc: {{act.description|| null}}</li>
+</ul>
+
+<h2 *ngIf="components.length != 0">Components: </h2>
+
+
+
+<ul *ngFor="let c of components">
+  <li>Id: {{c.id}}</li>
+  <li>InventoryId: {{c.inventoryNo || null}}</li>
+  <li>Name: {{c.shortName}}</li>
+  <li>Type: {{c.type || null}}</li>
+  <li>Brand: {{c.brand || null}}</li>
+  <li *ngIf="c.category != undefined">Category: {{c.category.name || null}}</li>
+  <li *ngIf="c.category == undefined">Category:</li>
+  <li>Desc: {{c.description || null}}</li>
+</ul>

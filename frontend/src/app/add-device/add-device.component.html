@@ -1,0 +1,79 @@
+<mat-card>
+<form [formGroup]="myForm">
+
+  <mat-form-field >
+    <mat-label>Inventory No:</mat-label>
+    <input matInput formControlName="inventoryNo" type="text" placeholder="1000">
+    <mat-error *ngIf="myForm.controls['inventoryNo'].invalid">
+      Please enter a valid inventory No!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Name:</mat-label>
+    <input matInput formControlName="name" type="text" placeholder="Ben">
+    <mat-error *ngIf="myForm.controls['name'].invalid">
+      Please enter a valid name!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Type:</mat-label>
+    <input matInput formControlName="type" type="text" placeholder="Testgerät">
+    <mat-error *ngIf="myForm.controls['type'].invalid">
+      Please enter a valid type!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Brand:</mat-label>
+    <input matInput formControlName="brand" type="text" placeholder="Selfmade">
+    <mat-error *ngIf="myForm.controls['brand'].invalid">
+      Please enter a valid brand!
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field >
+    <mat-label>Description:</mat-label>
+    <input matInput type="textarea" formControlName="description">
+    <mat-error *ngIf="myForm.controls['description'].invalid">
+      Please enter a valid description!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Belongs to:</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let d of devices" [value]="d">
+        {{d.shortName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
+
+</mat-card>
+<mat-card>
+
+<form [formGroup]="myForm">
+  <mat-form-field >
+    <mat-label>Abbreviation:</mat-label>
+    <input matInput type="text" formControlName="abbreviation">
+    <mat-error *ngIf="myForm.controls['abbreviation'].invalid">
+      Please enter a valid abbreviation!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Abbreviation:</mat-label>
+    <input matInput type="text" formControlName="namec">
+    <mat-error *ngIf="myForm.controls['namec'].invalid">
+      Please enter a valid abbreviation!
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<button mat-button color="primary" type="submit" [disabled]="!myForm.valid" (click)="add()">Add</button>
+</mat-card>

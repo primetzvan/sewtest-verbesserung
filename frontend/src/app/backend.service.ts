@@ -16,4 +16,12 @@ export class BackendService {
     return this.http.get<IDevice[]>(BASE_URL + "/device");
   }
 
+  public getDeviceById(id: number):Observable<IDevice>{
+    return this.http.get<IDevice>(BASE_URL + "/device/" + id);
+  }
+
+  public getComponentsById(id: number):Observable<IDevice[]>{
+    return this.http.get<IDevice[]>(BASE_URL + "/device/components/" + id);
+  }
+
 }
