@@ -11,7 +11,7 @@
 
   <mat-form-field >
     <mat-label>Name:</mat-label>
-    <input matInput formControlName="name" type="text" placeholder="Ben">
+    <input matInput formControlName="name" type="text" placeholder="Tasche">
     <mat-error *ngIf="myForm.controls['name'].invalid">
       Please enter a valid name!
     </mat-error>
@@ -46,7 +46,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Belongs to:</mat-label>
     <mat-select>
-      <mat-option *ngFor="let d of devices" [value]="d">
+      <mat-option *ngFor="let d of devices" [(ngModel)]="selectedValue" [value]="d">
         {{d.shortName}}
       </mat-option>
     </mat-select>
@@ -67,10 +67,10 @@
   </mat-form-field>
 
   <mat-form-field >
-    <mat-label>Abbreviation:</mat-label>
+    <mat-label>Category name:</mat-label>
     <input matInput type="text" formControlName="namec">
     <mat-error *ngIf="myForm.controls['namec'].invalid">
-      Please enter a valid abbreviation!
+      Please enter a valid category name!
     </mat-error>
   </mat-form-field>
 </form>

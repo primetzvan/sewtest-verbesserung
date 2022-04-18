@@ -9,6 +9,16 @@ export interface IDevice {
   category:ICategory
 }
 
+export interface IDeviceDTO{
+  brand:string,
+    description:string,
+    shortName:string,
+    type:string,
+    inventoryNo:string | null,
+    belongsto:IDevice,
+    category:ICategory
+}
+
 export interface ICategory {
   abbr:string,
   name:string

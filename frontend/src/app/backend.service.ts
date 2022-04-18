@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IDevice} from "./models/idevice";
+import {IDevice, IDeviceDTO} from "./models/idevice";
 
 const BASE_URL = "http://localhost:8080/api"
 
@@ -24,4 +24,7 @@ export class BackendService {
     return this.http.get<IDevice[]>(BASE_URL + "/device/components/" + id);
   }
 
+  addDevice(device: IDeviceDTO) {
+    return this.http.post<IDevice>(BASE_URL + "/device",device);
+  }
 }

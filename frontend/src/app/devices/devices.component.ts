@@ -14,14 +14,13 @@ export class DevicesComponent implements OnInit {
   @ViewChild(MatTable)
   public table!: MatTable<IDevice>;
   private data: IDevice[];
-  public filter: string;
   public display: string[] = ["id", "name","category","inventoryid"]
 
 
   constructor(private readonly backservice: BackendService) {
     this.datasource = new MatTableDataSource<IDevice>();
     this.data = [];
-    this.filter="";
+    this.reload();
   }
 
   ngOnInit(): void {

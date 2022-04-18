@@ -6,6 +6,7 @@ import {AddDeviceComponent} from "./add-device/add-device.component";
 
 const routes: Routes = [
   {path: 'devices', component: DevicesComponent},
+  {path: '', component: DevicesComponent},
   {path: 'detail/:id', component: DeviceDetailComponent},
   {path: 'new', component: AddDeviceComponent},
   {path: '**', component: DevicesComponent},

@@ -97,7 +97,6 @@ public class DeviceEndpoint {
   @Path("/components/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllComponents(@PathParam("id") long id) {
-    System.out.println(dvr.find("belongsTo.id = ?1", id).list());
     return Response.ok(dvr.find("belongsTo.id = ?1", id).list()).build();
   }
 
