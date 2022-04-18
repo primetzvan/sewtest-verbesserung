@@ -7,6 +7,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
+//TODO: @Transactional entfernt
 @ApplicationScoped
 public class CategoryRepository implements PanacheRepositoryBase<Category,String> {
 }

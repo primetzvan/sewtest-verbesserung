@@ -34,7 +34,9 @@ public class DeviceEndpoint {
   @Context
   UriInfo info;
 
+  //TODO: Nur Hauptelemente nicht alle
   @GET
+  @Produces(MediaType.APPLICATION_JSON)
   public List<Device> getAll() {
     return dvr.find("belongsTo = null").stream().collect(Collectors.toList());
 
@@ -45,15 +47,15 @@ public class DeviceEndpoint {
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllSorted(@PathParam("id") long id) {
     return Response.ok(dvr.find("id = ?1", id).firstResult()).build();
-    //return dvr.find("id = ?1", id).firstResult();
   }
 
+  //TODO: Rekursion eingebaut und toString implementiert
   @GET
   @Path("/tree")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAllSorted() {
-    List<DTODevice> ret = new ArrayList();
-    List<Device> l = new ArrayList();
+    List<DTODevice> ret = new ArrayList<DTODevice>();
+    List<Device> l = new ArrayList<Device>();
 
     List<Device> devices = dvr.listAll();
     for (Device d : devices) {
@@ -68,7 +70,7 @@ public class DeviceEndpoint {
 
   private List<Device> findAllNodes(List<Device> devices, Device d) {
 
-    List<Device> l = new ArrayList();
+    List<Device> l = new ArrayList<Device>();
 
     for (Device s : devices) {
       if (s.getBelongsTo() == d) {
@@ -81,6 +83,7 @@ public class DeviceEndpoint {
 
   }
 
+  //TODO: Response vervollständigt
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

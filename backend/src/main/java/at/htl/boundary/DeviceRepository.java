@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+//TODO: @Transactional entfernt
 @ApplicationScoped
 public class DeviceRepository implements PanacheRepository<Device> {
 
@@ -18,6 +19,7 @@ public class DeviceRepository implements PanacheRepository<Device> {
   @Inject
   CategoryRepository ctr;
 
+  //TODO: Von merge auf persist umgeändert
   public Device save(Device device) {
 
     Category c = ctr.findById(device.getCategory().getAbbr());

@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 
+//TODO: Sequenz umgesetzt
 @Entity
 @Table(name = "INV_DEVICE")
 @SequenceGenerator(
